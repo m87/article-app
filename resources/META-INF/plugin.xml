@@ -27,12 +27,15 @@
     </extensions>
 
     <actions>
-        <action id="com.consdata.article.SimpleAction"
-                class="com.consdata.article.SimpleAction"
-                text="Witam">
-            <add-to-group group-id="EditorPopupMenu"/>
-        </action>
-
+        <group id="com.consdata.article.SimpleGroup"
+               class="com.consdata.article.SimpleGroup" popup="true"
+               text="Grupa" description="Grupa">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <action id="com.consdata.article.SimpleAction"
+                    class="com.consdata.article.SimpleAction"
+                    text="Witam">
+            </action>
+        </group>
     </actions>
 
 </idea-plugin>

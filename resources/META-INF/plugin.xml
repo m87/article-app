@@ -16,25 +16,32 @@
     </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0"/>
+    <idea-version since-build="193.0"/>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <projectListeners>
+        <listener class="com.consdata.article.DocListener"
+                  topic="com.consdata.article.DocSaved"/>
+    </projectListeners>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
+        <documentationProvider implementation="com.consdata.article.DocProvider"/>
     </extensions>
 
+
     <actions>
-        <group id="com.consdata.article.SimpleGroup"
-               class="com.consdata.article.SimpleGroup" popup="true"
+        <group id="com.consdata.article.DocGroup"
+               class="com.consdata.article.DocGroup" popup="true"
                text="Dokumentacja">
             <add-to-group group-id="EditorPopupMenu" anchor="last"/>
-            <action id="com.consdata.article.SimpleAction"
-                    class="com.consdata.article.SimpleAction"
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <action id="com.consdata.article.DocAction"
+                    class="com.consdata.article.DocAction"
                     text="Generuj">
             </action>
         </group>

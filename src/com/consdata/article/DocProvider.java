@@ -48,7 +48,7 @@ public class DocProvider implements DocumentationProvider, ExternalDocumentation
                 .filter(psiMethod -> psiMethod.hasAnnotation("com.consdata.doc.Doc"))
                 .collect(Collectors.toMap(PsiMethod::getName, psiMethod -> evaulate(psiMethod.getProject(), psiMethod.getAnnotation("com.consdata.doc.Doc").findAttributeValue("value")))));
 
-        return String.join("<br/>", doc.entrySet().stream().map(e -> "<b>" + e.getKey() + "</b>: " + e.getValue()).collect(Collectors.toList()));
+        return doc.entrySet().stream().map(e -> "<b>" + e.getKey() + "</b>: " + e.getValue()).collect(Collectors.joining("<br/>"));
 
     }
 

@@ -66,7 +66,7 @@ public class DocAction extends AnAction {
                     .filter(psiMethod -> psiMethod.hasAnnotation("com.consdata.doc.Doc"))
                     .collect(Collectors.toMap(PsiMethod::getName, psiMethod -> evaulate(psiMethod.getProject(), psiMethod.getAnnotation("com.consdata.doc.Doc").findAttributeValue("value")))));
 
-            return String.join("\n", doc.entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).collect(Collectors.toList()));
+            return doc.entrySet().stream().map(e -> e.getKey() + ": " + e.getValue()).collect(Collectors.joining("\n"));
         } else {
             return "";
         }
